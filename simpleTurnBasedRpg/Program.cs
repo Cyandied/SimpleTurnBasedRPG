@@ -27,7 +27,7 @@ internal class Program
             Console.ResetColor();
             return (float)success;
         }
-        double val = (random.NextDouble() * (1.1 + 0.9) * 1);
+        double val = (random.NextDouble() * (1.1 - 0.9) + 0.9);
         return (float)val;
     }
 
@@ -39,8 +39,8 @@ internal class Program
             new(10, 3, 2, "Dragon Cultist"),
             new(20, 6, 4, "Dragon Wyrmling"),
             new(30, 10, 6, "Adolecent Dragon"),
-            new(50, 15, 10, "Anchinet Dragon"),
-            new(120, 30, 20, "Demorrah, the Dragon Godess")
+            new(5, 3000, 0, "Sacrificial lamb"),
+            new(100, 30, 15, "Demorrah, the Dragon Godess")
         };
 
         string devider = "";
@@ -94,16 +94,16 @@ internal class Program
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine(monster.name + " has " + monster.GetHealth() + "% HP left!");
                     Console.ResetColor();
-
                     Console.WriteLine(devider);
                 }
             }
+            if(player.health > 0 && monsters.Count > 1) { 
             Console.Clear();
             Console.WriteLine(monster.name + " defeated! You have leveled up, so all your stats have increased!");
             player.LevelUp();
-            Thread.Sleep(timer);
-            Console.WriteLine("You move further into the dungeon...");
-            Thread.Sleep(timer*4);
+            Console.WriteLine("Press 'enter' to continue further into the dungeon...");
+            Console.ReadLine();
+            }
             Console.Clear();
             monsters.Remove(monster);
         }
